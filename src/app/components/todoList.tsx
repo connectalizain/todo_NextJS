@@ -2,7 +2,7 @@ import { Todo } from '@/lib/drizzle';
 
 const getData = async () => {
   try {
-    const res = await fetch("/api/todo");   
+    const res = await fetch("http://todo-next-js-zeta.vercel.app/api/todo");   
     if (!res.ok) {
       throw new Error("Failed Fetching the Data");
     }
