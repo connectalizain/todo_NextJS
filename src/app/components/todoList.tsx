@@ -15,15 +15,15 @@ const getData = async () => {
 };
 
 const TodoList = async () => {
-  const data: Todo[] = await getData();
+  const resonse: {data: Todo[]} = await getData();
 
-  if (!data || data.length === 0) {
+  if (!resonse ) {
     return <p>No data found</p>;
   }
 
   return (
     <>
-      {data.map((items) => (
+      {resonse.data.map((items) => (
         <div className='bg-gray-300 px-4 py-3 flex h-full shadow-lg rounded-lg gap-x-4 items-center' key={items.id}>
           <div className='bg-secondary h-2 w-2 rounded-full'></div>
           <p className='text-lg font-medium'>{items.task}</p>
