@@ -9,12 +9,12 @@ try {
     id serial,
     task VARCHAR(255) 
     );`
-const res: Todo[] =await db.select().from(todoTable)
+const res =await db.select().from(todoTable)
 
 // let neededRes = res[]
     // While using withut drizzle
     // let neededRes = res.rows.find((item) => item.id === 2)
-    return NextResponse.json({message: res[0].task})
+    return NextResponse.json({data: res})
 } catch (err) {
     console.log(err)
     return NextResponse.json({message: "something went wrong"})}

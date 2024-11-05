@@ -1,32 +1,38 @@
-import { Todo } from '@/lib/drizzle';
+import { Todo } from "@/lib/drizzle";
+
 
 const getData = async () => {
   try {
-    const res = await fetch("http://todo-next-js-zeta.vercel.app/api/todo");   
+    const res = await fetch("http://localhost:3000/api/todo", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
     if (!res.ok) {
       throw new Error("Failed Fetching the Data");
     }
     const result = await res.json();
     return result;
   } catch (error) {
-    console.log(error);
-    return [];
+    console.log(`Fetching Failed ERROR = ${error}`);
   }
 };
 
 const TodoList = async () => {
-  const resonse: {data: Todo[]} = await getData();
+  const resonse: {data: Todo[]}  = await getData();
+console.log(`response : ${resonse}`)
 
-  if (!resonse ) {
-    return <p>No data found</p>;
-  }
 
   return (
     <>
-      {resonse.data.map((items) => (
-        <div className='bg-gray-300 px-4 py-3 flex h-full shadow-lg rounded-lg gap-x-4 items-center' key={items.id}>
-          <div className='bg-secondary h-2 w-2 rounded-full'></div>
-          <p className='text-lg font-medium'>{items.task}</p>
+      {resonse.data?.map((items) => (
+        <div
+          className="bg-gray-300 px-4 py-3 flex h-full shadow-lg rounded-lg gap-x-4 items-center"
+          key={items.id}
+        >
+          <div className="bg-secondary h-2 w-2 rounded-full"></div>
+          <p className="text-lg font-medium">{items.task}</p>
         </div>
       ))}
     </>
@@ -34,3 +40,5 @@ const TodoList = async () => {
 };
 
 export default TodoList;
+
+

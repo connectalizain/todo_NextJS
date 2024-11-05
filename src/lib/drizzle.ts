@@ -16,3 +16,8 @@ export type Todo = InferSelectModel<typeof todoTable>;       // Type for selecti
 export type NewTodo = InferInsertModel<typeof todoTable>;     // Type for inserting data
 
 export const db = drizzle(sql)
+
+  export interface TodoResponse {
+    data: [Todo]; // Array of Todo items
+  }
+  
